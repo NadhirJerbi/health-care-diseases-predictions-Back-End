@@ -2,17 +2,17 @@ from flask import Flask, jsonify
 from flask import request
 from numpy import np
 import pickle
-from flask_cors import CROS,cross_origin
+#from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-cros =CROS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+#cros =CORS(app)
+#app.config['CORS_HEADERS'] = 'Content-Type'
 
 model = pickle.load(open('/pkl/heart_model.pkl', 'rb'))
 
 @app.route("/" )
-@cross_origin()
+#@cross_origin()
 def home_view():
         return "<h1>Welcome si slim</h1>"
 
