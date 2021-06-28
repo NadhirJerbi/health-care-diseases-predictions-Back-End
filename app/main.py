@@ -41,5 +41,3 @@ def predict():
 
     return jsonify(str("Class  " + prediction))
 
-if __name__ == '__main__':
-    app.run(debug=True)
