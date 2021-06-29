@@ -8,7 +8,7 @@ app = Flask(__name__)
 cros =CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-model = joblib.load(open('/pkl/heart_model.pkl'))
+model = joblib.load(open('heart_model.pkl'))
 
 @app.route("/" )
 @cross_origin()
