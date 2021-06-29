@@ -8,7 +8,7 @@ app = Flask(__name__)
 cros =CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-model = joblib.load(open('heart_model.pkl'))
+model = heartModel
 
 @app.route("/" )
 @cross_origin()
@@ -39,3 +39,5 @@ def predict():
         prediction = "No need to fear. You have no dangerous symptoms of the disease"
 
     return jsonify(str("Class  " + prediction))
+
+
