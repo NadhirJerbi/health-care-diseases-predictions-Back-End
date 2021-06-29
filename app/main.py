@@ -8,7 +8,7 @@ app = Flask(__name__)
 cros =CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-model = heartModel
+#model = heartModel
 
 @app.route("/" )
 @cross_origin()
