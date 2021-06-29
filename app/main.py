@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 import numpy as np
 import joblib
-import pickle
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
