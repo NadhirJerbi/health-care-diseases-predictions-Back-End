@@ -1,14 +1,17 @@
 from flask import Flask, jsonify, request
 import numpy as np
 from flask_cors import CORS, cross_origin
-import joblib
+import pickle
+import os
 
 app = Flask(__name__)
 
 cros =CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-#model = heartModel
+basedir = os.path.abspath(os.path.dirname(__file__))
+heartmodelfile = os.path.join(basedir, './pkl/heart_model.pickle')
+heartModel = pickle.load(open(heartmodelfile, 'rb'))
 
 @app.route("/" )
 @cross_origin()

@@ -9,6 +9,7 @@ gunicorn = "*"
 flask-cors = "*"
 numpy = "*"
 joblib = "*"
+sklearn = "*"
 
 [dev-packages]
 
