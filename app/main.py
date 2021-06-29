@@ -3,6 +3,7 @@ import numpy as np
 from flask_cors import CORS, cross_origin
 import pickle
 import os
+import json
 
 app = Flask(__name__)
 
@@ -23,26 +24,34 @@ def ValuePredictor(to_predict_list, size):
     to_predict = np.array(to_predict_list).reshape(1,size)
     if(size==7):
         result = heartModel.predict(to_predict)
-    return result[0]
+        prob = heartModel.predict_proba(to_predict)
+        x= str(prob[0][0])
+        x= int(x)
+       
+    return {'state':result[0],'prob':x*100 }
 
 
 @app.route('/predict', methods = ["POST"])
 def predict():
-    print('welcome predict')
     if request.method == "POST":
-        print(request.form.to_dict())
-        to_predict_list = request.form.to_dict()
+        
+        to_predict_list = request.json
+        
         to_predict_list = list(to_predict_list.values())
+        print('therekkldkljdkjdf')
+        print(to_predict_list)
         to_predict_list = list(map(float, to_predict_list))
-         #diabetes
-        if(len(to_predict_list)==7):
-            result = ValuePredictor(to_predict_list,7)
+        to_predict = np.array(to_predict_list).reshape(1,7)
+        result = heartModel.predict(to_predict)
+        prob = heartModel.predict_proba(to_predict)
+        x= str(prob[0][0])
+        x= float(x)
+        print('(////////////////////////////////////////////)')
+        print(type(x))
+    return jsonify(({"state":int(result[0]),"prob":x*100}))
+        
+
     
-    if(int(result)==1):
-        prediction = "Sorry you chances of getting the disease. Please consult the doctor immediately"
-    else:
-        prediction = "No need to fear. You have no dangerous symptoms of the disease"
-
-    return jsonify(str("Class  " + prediction))
 
 
+app.run(debug=True)
