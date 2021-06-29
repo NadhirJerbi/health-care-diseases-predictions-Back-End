@@ -16,19 +16,19 @@ heartModel = pickle.load(open(heartmodelfile, 'rb'))
 @app.route("/" )
 @cross_origin()
 def home_view():
-        return "<h1>Welcome si slim</h1>"
+        return jsonify(str("Class "))
 
 def ValuePredictor(to_predict_list, size):
     to_predict = np.array(to_predict_list).reshape(1,size)
     if(size==7):
-        loaded_model = joblib.load(open('/pkl/heart_model.pkl', 'rb'))
-        result = loaded_model.predict(to_predict)
+        result = heartModel.predict(to_predict)
     return result[0]
 
 
 @app.route('/predict', methods = ["POST"])
 def predict():
     if request.method == "POST":
+        print(request.form.to_dict())
         to_predict_list = request.form.to_dict()
         to_predict_list = list(to_predict_list.values())
         to_predict_list = list(map(float, to_predict_list))
