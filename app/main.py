@@ -28,6 +28,7 @@ def ValuePredictor(to_predict_list, size):
 
 @app.route('/predict', methods = ["POST"])
 def predict():
+    print('welcome predict')
     if request.method == "POST":
         print(request.form.to_dict())
         to_predict_list = request.form.to_dict()
