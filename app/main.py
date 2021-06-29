@@ -16,6 +16,7 @@ heartModel = pickle.load(open(heartmodelfile, 'rb'))
 @app.route("/" )
 @cross_origin()
 def home_view():
+        print('welcome')
         return jsonify(str("Class "))
 
 def ValuePredictor(to_predict_list, size):
