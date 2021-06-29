@@ -50,8 +50,3 @@ def predict():
         print(type(x))
     return jsonify(({"state":int(result[0]),"prob":x*100}))
         
-
-    
-
-
-app.run(debug=True)
